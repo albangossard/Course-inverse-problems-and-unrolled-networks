@@ -35,7 +35,7 @@ def At(xi, y):
     return nufft.adjoint(xi, y)/np.sqrt(nx*ny)
 
 lamb = 1e-4
-nitermax = 1000
+nitermax = 600
 
 y = A(xi, f)
 
@@ -45,7 +45,7 @@ def callback(ft):
     hist_psnr.append(psnr.mean().item())
 
 ftilde, hist_res = tikhonov(A, At, xi, y, lamb, nitermax, callback=callback)
-plt.figure(0, figsize=(3,3))
+plt.figure(0, figsize=(4,3))
 plt.semilogy(hist_res)
 plt.grid(True)
 plt.xlabel('Iteration')
@@ -61,7 +61,7 @@ plt.figure(1)
 c=plt.imshow(f[0].real.cpu()); plt.colorbar(c)
 plt.figure(2)
 c=plt.imshow(ftilde[0].real.cpu()); plt.colorbar(c)
-plt.figure(3, figsize=(3,3))
+plt.figure(3, figsize=(4,3))
 plt.plot(hist_psnr)
 plt.grid(True)
 plt.xlabel('Iteration')

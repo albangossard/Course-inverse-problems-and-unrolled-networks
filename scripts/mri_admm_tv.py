@@ -22,9 +22,9 @@ f[0] = torch.tensor(resize(im, (nx, ny)))
 
 
 lamb = 1e-3
-beta = 1e0
+beta = 2e-1
 nitermaxcg = 50
-nitermax = 100
+nitermax = 30
 lambinit = 1e-4
 gamma1 = 1e-1
 gamma2 = 1e-1
@@ -97,7 +97,7 @@ for nit in range(nitermax):
 
     hist_psnr.append(psnr.mean().item())
 
-plt.figure(3, figsize=(3,3))
+plt.figure(3, figsize=(4,3))
 plt.plot(hist_psnr)
 plt.grid(True)
 plt.xlabel('Iteration')
